@@ -9,7 +9,7 @@ from myshop import core, server, utils, errors
 class TestServer(object):
 
     def setup(self):
-        db_url = 'sqlite:///./data/demo.db'
+        db_url = 'sqlite:///./data/test.db'
         self.test_username = "jude"
         self.test_password = "jude123"
         self.controller = core.Controller(db_url)

@@ -1,5 +1,3 @@
-MyShop
-======
 This is a simple REST API demo project written in python. The demo comes both with a server and a client that would consume the api exposed by the server. The server allows users to register online, authenticate and then see their login history. It exposes the following endpoints:
 
 ```
@@ -11,7 +9,7 @@ POST /register -d {
 
 POST /auth -d {
   "username": "string",
-  "passwrd": "string"
+  "password": "string"
 }
 
 GET /logins
@@ -113,7 +111,11 @@ Response:
 ```json
 {
   "logins": [
-    {"username": "jude", "login_time": "2017-07-21T19:03:25Z"}, {"username": "jude", "login_time": "2017-07-21T19:03:24Z"}, {"username": "jude", "login_time": "2017-07-21T19:03:21Z"}, {"username": "jude", "login_time": "2017-07-21T19:03:19Z"}, {"username": "jude", "login_time": "2017-07-21T19:03:18Z"}
+    {"username": "jude", "login_time": "2017-07-21T19:03:25Z"},
+    {"username": "jude", "login_time": "2017-07-21T19:03:24Z"},
+    {"username": "jude", "login_time": "2017-07-21T19:03:21Z"},
+    {"username": "jude", "login_time": "2017-07-21T19:03:19Z"},
+    {"username": "jude", "login_time": "2017-07-21T19:03:18Z"}
   ]
 }
 ```

@@ -2,7 +2,6 @@ import time
 import requests
 import traceback
 
-USER_AGENT_HEADER_TAG = 'User-Agent'
 
 class ServiceFailedException(Exception):
     def __init__(self, error_msg, status_code):

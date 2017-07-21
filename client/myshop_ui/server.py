@@ -1,12 +1,10 @@
 import os
-from os.path import join, dirname
-import traceback
 import json
+import traceback
 from pkg_resources import Requirement, resource_filename
 
 import requests
 import bottle
-from bottle import request, Bottle, response
 from bottle import (
     Bottle,
     request,

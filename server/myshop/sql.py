@@ -1,10 +1,8 @@
-import functools
 import time
-from sqlalchemy.orm import sessionmaker
+import functools
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.databases import mysql
-from sqlalchemy import String, Unicode
 
 
 def use_session(f):
