@@ -15,7 +15,7 @@ POST /auth -d {
 GET /logins
 ```
 
-For the purposes of the demo, the server uses an SQLite database.
+For the purposes of the demo, the server uses an SQLite database and does bootstrapping (i.e. create the database and tables) on the initial boot of the service.
 
 
 The Server
