@@ -72,7 +72,7 @@ Running the server, listens on port 8443 over HTTPS.
 Register a user.
 
 ```bash
-curl -k https://0.0.0.0:8443/register -d '{"username": "jude", "password": "jude", "full_name": "Jude DSouza"}'
+curl --cacert server/certs/ca.pem https://0.0.0.0:8443/register -d '{"username": "jude", "password": "jude", "full_name": "Jude DSouza"}'
 ```
 
 Response:
@@ -89,7 +89,7 @@ Response:
 Authenticate the user.
 
 ```bash
-curl -k https://0.0.0.0:8443/auth -d '{"username": "jude", "password": "jude"}'
+curl --cacert server/certs/ca.pem https://0.0.0.0:8443/auth -d '{"username": "jude", "password": "jude"}'
 ```
 
 Response:
@@ -103,7 +103,7 @@ Response:
 Get login history (5 most recent successful logins).
 
 ```bash
-curl -k https://0.0.0.0:8443/logins -H 'Authorization: Session-token 5586cd30-1dbe-4660-9b68-b20be4d280fb'
+curl --cacert server/certs/ca.pem https://0.0.0.0:8443/logins -H 'Authorization: Session-token 5586cd30-1dbe-4660-9b68-b20be4d280fb'
 ```
 
 Response:

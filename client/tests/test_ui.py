@@ -13,7 +13,7 @@ class TestServer(object):
         self.test_username = "jude"
         self.test_password = "jude123"
         templates_dir = join(dirname(__file__), '../templates')
-        app = server.create_app("", templates_dir)
+        app = server.create_app("", templates_dir, "")
         self.app = TestApp(app)
 
     def test_index_view(self):

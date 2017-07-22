@@ -140,6 +140,7 @@ def main():
     """
     cert_file = resource_filename("myshop", "certs/server.pem")
     key_file = resource_filename("myshop", "certs/server.key")
+    ca_file = resource_filename("myshop", "certs/ca.pem")
     db_path = resource_filename("myshop", "data/myshop.db")
     db_url = 'sqlite:///{path}'.format(path=db_path)
     db_url = os.environ.get('DB_URL', db_url)
@@ -151,7 +152,8 @@ def main():
         server='gunicorn',
         loglevel='warning',
         certfile=cert_file,
-        keyfile=key_file
+        keyfile=key_file,
+        ca_certs=ca_file
     )
 
 

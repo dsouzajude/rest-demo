@@ -9,7 +9,11 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     data_files=[
-        ('myshop_ui/certs', ['certs/server.pem', 'certs/server.key']),
+        ('myshop_ui/certs', [
+            'certs/server.pem',
+            'certs/server.key',
+            'certs/ca.pem'
+        ]),
         ('myshop_ui/templates', [
             'templates/layout.mako',
             'templates/index.mako',

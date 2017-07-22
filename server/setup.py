@@ -9,7 +9,11 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     data_files=[
-        ('myshop/certs', ['certs/server.pem', 'certs/server.key']),
+        ('myshop/certs', [
+            'certs/server.pem',
+            'certs/server.key',
+            'certs/ca.pem'
+        ]),
         ('myshop/data', ['data/myshop.db'])
     ],
     install_requires=[

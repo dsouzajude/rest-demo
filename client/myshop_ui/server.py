@@ -38,7 +38,7 @@ def handle_errors(f):
     return wrapper
 
 
-def create_app(myshop_endpoint, templates_dir):
+def create_app(myshop_endpoint, templates_dir, ca_file):
     app = Bottle()
     TEMPLATE_PATH.insert(0, templates_dir)
 
@@ -67,7 +67,7 @@ def create_app(myshop_endpoint, templates_dir):
         })
         url = "{}/register".format(myshop_endpoint)
         try:
-            requestor.post(url, data=payload, verify=False)
+            requestor.post(url, data=payload, verify=ca_file)
         except requestor.ServiceFailedException as ex:
             error_msg = "{} Unable to register.".format(ex.error_msg)
             raise HTTPError(status=ex.status_code, body=error_msg)
@@ -93,7 +93,7 @@ def create_app(myshop_endpoint, templates_dir):
         })
         url = "{}/auth".format(myshop_endpoint)
         try:
-            resp = requestor.post(url, data=payload, verify=False)
+            resp = requestor.post(url, data=payload, verify=ca_file)
             resp = json.loads(resp.text)
             session_token = resp['session_token']
             response.set_cookie("myshop_session_token", session_token)
@@ -124,7 +124,7 @@ def create_app(myshop_endpoint, templates_dir):
         url = "{}/logins".format(myshop_endpoint)
         headers = {"Authorization": "Session-token {}".format(session_token)}
         try:
-            resp = requestor.get(url, verify=False, headers=headers)
+            resp = requestor.get(url, verify=ca_file, headers=headers)
             resp = json.loads(resp.text)
             logins = resp['logins']
             return {"logins": logins}
@@ -143,19 +143,21 @@ def create_app(myshop_endpoint, templates_dir):
 def main():
     cert_file = resource_filename("myshop_ui", "certs/server.pem")
     key_file = resource_filename("myshop_ui", "certs/server.key")
+    ca_file = resource_filename("myshop_ui", "certs/ca.pem")
     templates_dir = resource_filename("myshop_ui", "templates")
     myshop_endpoint = os.environ.get(
         'MYSHOP_ENDPOINT',
         'https://0.0.0.0:8443'
     )
-    app = create_app(myshop_endpoint, templates_dir)
+    app = create_app(myshop_endpoint, templates_dir, ca_file)
     app.run(
         host='0.0.0.0',
         port=9443,
         server='gunicorn',
         loglevel='warning',
         certfile=cert_file,
-        keyfile=key_file
+        keyfile=key_file,
+        ca_certs=ca_file
     )
 
 if __name__ == '__main__':
