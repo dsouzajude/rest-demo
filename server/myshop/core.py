@@ -63,7 +63,7 @@ class Controller(object):
 
         # Check expiry
         now = datetime.utcnow()
-        session_duration = (now - session.create_time).seconds
+        session_duration = (now - session.create_time).total_seconds()
         if session_duration > self.session_expiry_time_seconds:
             raise errors.SessionExpired()
 
