@@ -4,7 +4,9 @@ from sqlalchemy import Column, Boolean, DateTime, String
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql.expression import desc
 
-import sql, utils, errors
+import sql
+import utils
+import errors
 
 
 Base = sql.create_declarative_base()
@@ -43,7 +45,7 @@ class UserLogin(Base):
 
     def to_dict(self):
         keys = self.__table__.c.keys()
-        return {k: getattr(self, k) for k in keys if k!= 'session_token'}
+        return {k: getattr(self, k) for k in keys if k != 'session_token'}
 
     def to_json_dict(self):
         d = self.to_dict()

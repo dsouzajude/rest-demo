@@ -8,7 +8,9 @@ import jsonschema
 import bottle
 from bottle import request, Bottle, response
 
-import core, schemas, errors
+import core
+import schemas
+import errors
 
 
 class MyshopApp(Bottle):
@@ -157,5 +159,5 @@ def main():
     )
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

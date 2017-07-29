@@ -13,8 +13,10 @@ def add_headers(kwargs):
     kwargs.setdefault('headers', {})['User-Agent'] = "myshop-ui"
     kwargs.setdefault('headers', {})['Content-type'] = "application/json"
 
+
 def is_ok_code_response(code):
     return 200 <= code < 400
+
 
 def _make_request(func, url, retries, delay, backoff, *args, **kwargs):
 

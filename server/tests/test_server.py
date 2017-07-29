@@ -26,9 +26,11 @@ class TestServer(object):
             "password": self.test_password,
             "full_name": self.test_username
         }
-        return self.app.post_json('/register',
-                                 payload,
-                                 expect_errors=expect_errors)
+        return self.app.post_json(
+            '/register',
+            payload,
+            expect_errors=expect_errors
+        )
 
     def _authenticate(self):
         payload = {
@@ -134,7 +136,7 @@ class TestServer(object):
 
     def test_getting_login_attempts_fails_on_session_expiry(self):
         self._register_user()
-        self.controller.session_expiry_time_seconds = -1 # expire session sooner
+        self.controller.session_expiry_time_seconds = -1
         resp = self._authenticate()
         session_token = resp.json['session_token']
         headers = {
