@@ -100,8 +100,10 @@ def create_app(myshop_endpoint, templates_dir, ca_file):
             print "Authenticated username={}".format(username)
             redirect('/welcome')
         except requestor.ServiceFailedException as ex:
-            error_msg = "{} Authentication Failed.".format(ex.error_msg)
-            raise HTTPError(status=ex.status_code, body=error_msg)
+            print "Authenticated failed. username={}".format(username)
+            response.set_cookie("myshop_session_token", "")
+            response.status = ex.status_code
+            return ex.error_msg
 
     @app.route('/welcome', method=['GET'])
     @handle_errors
@@ -159,6 +161,7 @@ def main():
         keyfile=key_file,
         ca_certs=ca_file
     )
+
 
 if __name__ == '__main__':
     main()
